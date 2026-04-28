@@ -1,7 +1,6 @@
 #include<iostream>
 
 
-
 class Product {
 public:
 
@@ -10,11 +9,32 @@ private:
     int value;
 };
 
-struct Order {
-    std::vector<int>productIds;
-    int value;
+class Order {
+private:
+    int productId;
     int orderId;
 };
+
+struct ProductStock {
+    int productId;
+    int count;
+};
+
+
+class Inventory {
+public:
+    void addProduct(std::unique_ptr<Product> roduct) {
+
+    }
+
+    std::shared_ptr<Product> fetchProduct(int productId) {
+
+    }
+
+private:
+    std::map<int,std::shared_ptr<ProductStock>> stock;
+};
+ 
 
 
 class PaymentStrategy {
@@ -32,32 +52,11 @@ class PaymentProcessor {
 public:
     void pay(int amount);
 private:
-    std::unique_ptr<PaymentProcessor>paymentProcessor;
+    std::unique_ptr<PaymentStrategy>paymentStrategy;
 
 };
 
 
-class Dispatcher {
-public:
-    bool dispatch(Order &order) {
-
-    }
-private:
-};
-
-class Inventory {
-public:
-    void addProduct(std::unique_ptr<Product> roduct) {
-
-    }
-
-    std::shared_ptr<Product> fetchProduct(int productId) {
-
-    }
-
-private:
-    std::map<int,vector<std::shared_ptr<Product>>> products;
-};
 
 
 class VendingMachineState {
